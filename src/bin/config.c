@@ -89,6 +89,8 @@ config_init(void)
      (edd_base, Config, "cg_width", cg_width, EET_T_INT);
    EET_DATA_DESCRIPTOR_ADD_BASIC
      (edd_base, Config, "cg_height", cg_height, EET_T_INT);
+   EET_DATA_DESCRIPTOR_ADD_BASIC
+     (edd_base, Config, "miniview", miniview, EET_T_UCHAR);
 }
 
 void
@@ -171,6 +173,7 @@ config_sync(const Config *config_src, Config *config)
    config->custom_geometry = config_src->custom_geometry;
    config->cg_width = config_src->cg_width;
    config->cg_height = config_src->cg_height;
+   config->miniview = config_src->miniview;
 }
 
 Config *
@@ -426,6 +429,7 @@ config_load(const char *key)
              config->custom_geometry = EINA_FALSE;
              config->cg_width = 80;
              config->cg_height = 24;
+             config->miniview = EINA_FALSE;
           }
      }
 
@@ -474,6 +478,7 @@ config_fork(Config *config)
    CPY(custom_geometry);
    CPY(cg_width);
    CPY(cg_height);
+   CPY(miniview);
    
    CPY(temporary);
    SCPY(config_key);
